@@ -28,17 +28,22 @@ function openImageInLightbox(e) {
   e.preventDefault();
 
   modal = basicLightbox.create(
-    `<img width='1400' height='900' src='${clickedOn.dataset.source}'/>`
+    `<img width='1400' height='900' src='${clickedOn.dataset.source}'/>`,
+    {
+      onShow: (instance) => {
+        document.addEventListener("keydown", closeOnEscape);
+      },
+
+      onClose: (instance) => {
+        document.removeEventListener("keydown", closeOnEscape);
+      },
+    }
   );
   modal.show();
 
-  // inchide cu tasta 'Escape'
   const closeOnEscape = (e) => {
     if (e.key === "Escape") {
       modal.close();
-      document.removeEventListener("keydown", closeOnEscape);
     }
   };
-
-  document.addEventListener("keydown", closeOnEscape);
 }
