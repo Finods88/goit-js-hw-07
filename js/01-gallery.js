@@ -32,7 +32,7 @@ function openImageInLightbox(e) {
   );
   modal.show();
 
-  // inchide cu tasta 'Escape'
+
   const closeOnEscape = (e) => {
     if (e.key === "Escape") {
       modal.close();
